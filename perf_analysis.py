@@ -48,7 +48,7 @@ def perfAnalysis(eq_tickers: list, start: date, end: date, riskfree_rate=0.00, p
     # Calc summary stats
     summary_stats = pd.DataFrame(index=eq_tickers, columns=['Cumulative return($)', 'Annualized return', 'Annualized volatility', 'Annualized Sharpe ratio', 'Max drawdown'])    
     for ticker in eq_tickers:
-        cumulative_return = eq_dd[ticker]["Wealth"][-1]-1
+        cumulative_return = eq_dd[ticker]["Wealth"][-1]-init_cap
         n_days = eq_rets[ticker].shape[0]
         annualized_return = (eq_rets[ticker]+1).prod()**(252/n_days) - 1
         annualized_volatility = eq_rets[ticker].std()*252**0.5 # we have daily data and 252 trading days a year
